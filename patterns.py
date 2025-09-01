@@ -51,21 +51,25 @@ class K1Patterns:
     @staticmethod
     def get_ein_patterns() -> List[Pattern]:
         """
-        Patterns to find Employer Identification Number (XX-XXXXXXX).
+        Patterns to find Employer Identification Number (XX-XXXXXXX or XXXXXXXXX).
         
         Variations we handle:
         - "Employer identification number: 12-3456789"
-        - "EIN: 12-3456789"
+        - "EIN: 12-3456789" 
+        - "EIN: 123456789" (no dash)
         - "Federal ID Number: 12-3456789"
+        - "123456789" (standalone 9-digit number)
         """
         return [
-            # Most specific first
+            # Most specific first - with labels
             re.compile(r"Employer\s+identification\s+number[\s:]*(\d{2}[-\s]?\d{7})", re.IGNORECASE),
             re.compile(r"EIN[\s:]*(\d{2}[-\s]?\d{7})", re.IGNORECASE),
             re.compile(r"Federal\s+ID[\s:]*(\d{2}[-\s]?\d{7})", re.IGNORECASE),
             re.compile(r"Tax\s+ID[\s:]*(\d{2}[-\s]?\d{7})", re.IGNORECASE),
-            # Most general last - just find the pattern
-            re.compile(r"\b(\d{2}-\d{7})\b")
+            
+            # General patterns - with and without dashes
+            re.compile(r"\b(\d{2}-\d{7})\b"),        # With dash: 12-3456789
+            re.compile(r"\b(\d{9})\b"),              # Without dash: 123456789
         ]
     
     @staticmethod
