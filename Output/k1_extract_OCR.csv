@@ -1,0 +1,58 @@
+form_type,tax_year,extraction_timestamp,extraction_method,confidence_score,ein,entity_name,entity_address,partner_name,partner_ssn,partner_address,box_1_ordinary_income,box_2_rental_real_estate,box_3_other_rental,box_4_guaranteed_payments,box_5_interest_income,box_6a_ordinary_dividends,box_6b_qualified_dividends,box_7_royalties,box_8_net_short_term_gain,box_9a_net_long_term_gain,box_9b_collectibles_gain,box_9c_unrecaptured_1250,box_10_net_1231_gain,box_11_other_income,box_12_section_179,box_13_other_deductions,box_14_self_employment,box_15_credits,box_16_foreign_transactions,box_17_amt_items,box_20_other,capital_beginning,capital_contributions,capital_distributions,capital_ending,profit_sharing_percent,loss_sharing_percent,capital_percent,raw_text,warnings,errors
+1065,2018,2025-09-02 06:53:43.141035,ocr,0.5733333333333333,,", address, city, state, and ZIP code Oo | L* 22",,,,,,,16.0,,,,,,,,,,,,,{},,{},{},{},{},,0.0,25100.0,,,,,"SAMPLE"": K-1 Tax Package Sample is for informational purposes only. The values are based on
+hypothetical units purchased in December 2017 and allocations for the full 12 month tax year ended
+December 31, 2018. The sample is based on tax year 2018 information and is not representative of future
+results and should not be considered as tax advice. Lb 5 1 1 j 8
+(_) Final K-1 (_} Amended K-1 OMB No. 1545-0123
+Schedule K-1 D04 8 -Faaii, Partner's S of Current Year Income,
+(Form 1065) Deductions, Credits, and Other Items
+internal Revenue e
+For calendar year 2018, or tax year -27.942
+Partner’s Share of Income, Deductions, .
+3 Other net rental income (loss) 16 Foreign transactions
+—GEGE information About the Partnershir
+A Partnership's employer identification number B 21 6,999
+B Partnership's name, address, city, state, and ZIP code Oo | L* 22
+ENVIVA PARTNERS, LP 6a Ordinary dividends
+7200 WISCONSIN AVENUE
+SUITE 1000
+e-file
+egy Information About the Partner 17 Alternative minimum tax (AMT) items
+E ‘Partner's identifying number A 1,681
+eee-ee-7730 9a Net long-term capital gain (loss)
+F Pes Lit address, city, state, and ZIP code 0:8B 2
+~ tibles (28%
+10000 UNITS oe | Colectirinn (B76) gain Goes)
+7200 WISCONSIN AVENUE
+SUITE 1000 9c Unrecaptured section 1250 gain 18 Tax-exempt income and
+G [J] General partner or LLC [X] Limited partner or other LLC 10 Net section 1231 gain (loss) C 100
+member-manager member 31
+H_ [X] Domestic partner ("") Foreign partner 11 Other income (loss)
+11 What type of entity is this partner? = |ndividual
+I2 If this partner is a retirement plan (IRA/SEP/Keogh/etc.), check here C) 19 Distributions
+Js Partner's share of profit, loss, and capital (see instructions): A 25,100
+Beginning Ending
+Loss 0.038109 % 0.037766 % 20 Other information
+Cc 0.038109 % 0.037766 % | 13 Other deductions
+K 10.805 | A 0
+K Partner's share of liabilities:
+Beginning Ending V -27 942
+Nonrecourse . . §$ 0. ¢ 132,216
+Qualified nonrecourse AD -27,942
+financing . . . § ’ 14 Self-employment earnings (loss)
+Recourse . . . § $ AH* 216.999
+Beginning capitalaccount.. . . . $ 271.500
+Capital contributed during the year. $ 0 “See attached statement for additional information.
+Current year increase (decrease) . . $ -38,816
+Withdrawals & distributions . . . $( 25,100 )
+Ending capitalaccount. . . . . $ 207.584 =
+Oo
+®
+IX] Tax basis L_] Gaap [_} Section 704(b) book 2
+(| Other (explain) o
+M __ Did the partner contribute property with a built-in gain or loss? id
+L] ves IX] No
+if “Yes,” attach statement (see instructions)
+For Paperwork Reduction Act Notice, see Instructions for Form 1065. www.irs.gov/Form1065 Cat. No. 11394R Schedule K-1 (Form 1065) 2018
+
+",[],[]
