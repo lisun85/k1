@@ -1,0 +1,175 @@
+{
+  "summary": {
+    "total_tests": 22,
+    "passed": 15,
+    "failed": 7,
+    "pass_rate": 68.18181818181817,
+    "processing_time": 0.2066488265991211,
+    "extraction_method": "pdf_text"
+  },
+  "tests": [
+    {
+      "field": "form_type",
+      "expected": "1065",
+      "actual": "1065",
+      "passed": true,
+      "notes": "Entity information"
+    },
+    {
+      "field": "tax_year",
+      "expected": "2023",
+      "actual": "2018",
+      "passed": false,
+      "notes": "Entity information"
+    },
+    {
+      "field": "ein",
+      "expected": "56-2178030",
+      "actual": "46-4097730",
+      "passed": false,
+      "notes": "Entity information"
+    },
+    {
+      "field": "entity_name",
+      "expected": "Enviva Partners, LP",
+      "actual": "K-1 Tax Package Sample is for informational purposes only. The values are based on\nhypothetical units purchased in December 2017 and allocations for the full 12 month tax year ended\nDecember 31, 2018. The sample is based on tax year 2018 information and is not representative of future 651118\nresults and should not be considered as tax advice.\nFinal K-1 Amended K-1 OMB No. 1545-0123\n2018\nSchedule K-1 Part III Partners Share of Current Year Inc",
+      "passed": false,
+      "notes": "Entity information"
+    },
+    {
+      "field": "box_1_ordinary_income",
+      "expected": -27942.0,
+      "actual": -27942.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_2_rental_real_estate",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_3_other_rental",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_4_guaranteed_payments",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_5_interest_income",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_6a_ordinary_dividends",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_6b_qualified_dividends",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_7_royalties",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_8_net_short_term_gain",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_9a_net_long_term_gain",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_10_net_1231_gain",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_11_other_income",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_12_section_179",
+      "expected": 0.0,
+      "actual": 0.0,
+      "passed": true,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "box_19_distributions",
+      "expected": 25100.0,
+      "actual": null,
+      "passed": false,
+      "notes": "Box value from Part III"
+    },
+    {
+      "field": "capital_beginning",
+      "expected": 1076588.0,
+      "actual": 271500.0,
+      "passed": false,
+      "notes": "Capital account from Part L"
+    },
+    {
+      "field": "capital_ending",
+      "expected": 1024146.0,
+      "actual": 207584.0,
+      "passed": false,
+      "notes": "Capital account from Part L"
+    },
+    {
+      "field": "capital_contributions",
+      "expected": 0.0,
+      "actual": null,
+      "passed": false,
+      "notes": "Capital account from Part L"
+    },
+    {
+      "field": "capital_distributions",
+      "expected": 25100.0,
+      "actual": 25100.0,
+      "passed": true,
+      "notes": "Capital account from Part L"
+    }
+  ],
+  "failed_fields": [
+    "tax_year",
+    "ein",
+    "entity_name",
+    "box_19_distributions",
+    "capital_beginning",
+    "capital_ending",
+    "capital_contributions"
+  ]
+}

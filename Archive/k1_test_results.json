@@ -1,0 +1,341 @@
+{
+  "test_timestamp": "2025-09-02T20:02:38.699000",
+  "summary": {
+    "total_tests": 47,
+    "passed": 1,
+    "failed": 46,
+    "skipped": 0,
+    "pass_rate": 2.127659574468085
+  },
+  "detailed_results": [
+    {
+      "field": "Part I.A - Partnership EIN",
+      "description": "Partnership's employer identification number",
+      "expected": "12-3456789",
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part I.B - Partnership Name",
+      "description": "Partnership's legal name",
+      "expected": "Wayne Enterprises",
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part I.B - Partnership Address",
+      "description": "Partnership's mailing address",
+      "expected": "800 South Wells St\nChicago, IL 60607",
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part I.C - IRS Center",
+      "description": "IRS center where partnership filed return",
+      "expected": null,
+      "actual": "",
+      "status": "FAIL"
+    },
+    {
+      "field": "Part I.D - PTP Status",
+      "description": "Is this a publicly traded partnership",
+      "expected": false,
+      "actual": false,
+      "status": "PASS"
+    },
+    {
+      "field": "Part II.E - Partner TIN",
+      "description": "Partner's SSN or TIN",
+      "expected": "123-45-6789",
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.F - Partner Name",
+      "description": "Partner's legal name",
+      "expected": "Bruce Wayne",
+      "actual": "7 Royalties",
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.F - Partner Address",
+      "description": "Partner's mailing address",
+      "expected": "1007 Mountain Drive\nGotham, NJ 07001",
+      "actual": "member-manager member 19 Distributions",
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.J - Profit % (Beginning)",
+      "description": "",
+      "expected": 50.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.J - Profit % (Ending)",
+      "description": "",
+      "expected": 50.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.J - Loss % (Beginning)",
+      "description": "",
+      "expected": 50.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.J - Loss % (Ending)",
+      "description": "",
+      "expected": 50.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.J - Capital % (Beginning)",
+      "description": "",
+      "expected": 50.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.J - Capital % (Ending)",
+      "description": "",
+      "expected": 50.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.K1 - Nonrecourse (Beginning)",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.K1 - Nonrecourse (Ending)",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.K1 - Recourse (Beginning)",
+      "description": "",
+      "expected": 30000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.K1 - Recourse (Ending)",
+      "description": "",
+      "expected": 35000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.L - Beginning Capital",
+      "description": "",
+      "expected": 500000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.L - Capital Contributed",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.L - Current Year Income",
+      "description": "",
+      "expected": 109000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.L - Other Increase",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.L - Withdrawals/Distributions",
+      "description": "",
+      "expected": 50000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.L - Ending Capital",
+      "description": "",
+      "expected": 559000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.M - Property Contribution",
+      "description": "",
+      "expected": false,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.N - Unrecognized 704(c) (Beginning)",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part II.N - Unrecognized 704(c) (Ending)",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.1 - Ordinary Business Income",
+      "description": "",
+      "expected": 100000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.2 - Net Rental Real Estate",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.3 - Other Net Rental",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.4a - Guaranteed Payments (Services)",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.4b - Guaranteed Payments (Capital)",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.4c - Total Guaranteed Payments",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.5 - Interest Income",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.6a - Ordinary Dividends",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.6b - Qualified Dividends",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.6c - Dividend Equivalents",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.7 - Royalties",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.8 - Net Short-term Capital Gain",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.9a - Net Long-term Capital Gain",
+      "description": "",
+      "expected": 9000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.9b - Collectibles Gain",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.9c - Unrecaptured Section 1250",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.10 - Net Section 1231 Gain",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.12 - Section 179 Deduction",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.17 - AMT Items",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.19 - Distributions",
+      "description": "",
+      "expected": 50000.0,
+      "actual": null,
+      "status": "FAIL"
+    },
+    {
+      "field": "Part III.21 - Foreign Taxes",
+      "description": "",
+      "expected": 0.0,
+      "actual": null,
+      "status": "FAIL"
+    }
+  ]
+}
