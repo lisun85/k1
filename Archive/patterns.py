@@ -1,5 +1,5 @@
 """
-patterns.py - Regex Patterns for K-1 Data Extraction
+ Regex Patterns for K-1 Data Extraction
 ====================================================
 This file contains all the patterns we aim to find and extract
 data from K-1 text.
