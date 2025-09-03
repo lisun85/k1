@@ -114,7 +114,19 @@ def format_currency(value: Optional[float]) -> str:
     """Format number as currency."""
     if value is None:
         return "—"
-    return f"${value:,.2f}"
+    
+    # Handle string values that should be numbers
+    if isinstance(value, str):
+        try:
+            value = float(value)
+        except (ValueError, TypeError):
+            return "—"
+    
+    # Handle numeric values
+    if isinstance(value, (int, float)):
+        return f"${value:,.2f}"
+    
+    return "—"
 
 def format_percentage(value: Optional[float]) -> str:
     """Format number as percentage."""
@@ -176,8 +188,6 @@ with st.sidebar:
     
     **Supported Forms:**
     - Form 1065 (Partnership)
-    - Form 1120S (S-Corp)
-    - Form 1041 (Estate/Trust)
     
     **Tips:**
     - Clear PDFs work best
@@ -323,43 +333,7 @@ with tab1:
             2. **Validate** the data for consistency
             3. **Score** confidence levels for each field
             4. **Export** to JSON or CSV format
-            
-            ---
-            
-            **Demo Mode**: Don't have a K-1 handy? Click below to use sample data.
             """)
-            
-            if st.button("🎭 Use Sample Data", use_container_width=True):
-                # Create mock result for demo
-                from models import K1Data, FormType, ExtractionMethod
-                
-                mock_data = K1Data(
-                    form_type=FormType.FORM_1065,
-                    tax_year="2023",
-                    ein="12-3456789",
-                    entity_name="ABC Real Estate Partnership LLC",
-                    partner_name="John Doe",
-                    box_1_ordinary_income=50000.00,
-                    box_2_rental_real_estate=10000.00,
-                    box_5_interest_income=2500.00,
-                    capital_beginning=100000.00,
-                    capital_ending=175000.00,
-                    capital_contributions=25000.00,
-                    profit_sharing_percent=50.0,
-                    confidence_score=0.95,
-                    extraction_method=ExtractionMethod.PDF_TEXT
-                )
-                
-                mock_result = ExtractionResult(
-                    success=True,
-                    data=mock_data,
-                    processing_time=1.5,
-                    extraction_method=ExtractionMethod.PDF_TEXT,
-                    file_name="sample_k1.pdf"
-                )
-                
-                st.session_state.current_result = mock_result
-                st.success("✅ Sample data loaded! Check the Results tab.")
 
 # ============================================================================
 # TAB 2: RESULTS
@@ -402,10 +376,12 @@ with tab2:
             with col1:
                 st.text_input("EIN", value=data.part_i_a_ein or "", disabled=True)
                 st.text_input("Entity Name", value=data.part_i_b_name or "", disabled=True)
+                st.text_area("Entity Address", value=data.part_i_b_address or "", disabled=True, height=100)
             
             with col2:
                 st.text_input("Partner Name", value=data.part_ii_f_partner_name or "", disabled=True)
                 st.text_input("Partner SSN/EIN", value=data.part_ii_e_partner_tin or "", disabled=True)
+                st.text_area("Partner Address", value=data.part_ii_f_partner_address or "", disabled=True, height=100)
         
         # Income Section
         with st.expander("💰 **Income (Boxes 1-11)**", expanded=True):
@@ -413,26 +389,31 @@ with tab2:
                 "Box 1 - Ordinary Income": format_currency(data.part_iii_1_ordinary_income),
                 "Box 2 - Rental Real Estate": format_currency(data.part_iii_2_rental_real_estate),
                 "Box 3 - Other Rental": format_currency(data.part_iii_3_other_rental),
-                "Box 4a - Guaranteed Payments": format_currency(data.part_iii_4a_guaranteed_payments_services),
+                "Box 4a - Guaranteed Payments (Services)": format_currency(data.part_iii_4a_guaranteed_payments_services),
+                "Box 4b - Guaranteed Payments (Capital)": format_currency(data.part_iii_4b_guaranteed_payments_capital),
+                "Box 4c - Total Guaranteed Payments": format_currency(data.part_iii_4c_total_guaranteed_payments),
                 "Box 5 - Interest": format_currency(data.part_iii_5_interest_income),
                 "Box 6a - Ordinary Dividends": format_currency(data.part_iii_6a_ordinary_dividends),
                 "Box 6b - Qualified Dividends": format_currency(data.part_iii_6b_qualified_dividends),
+                "Box 6c - Dividend Equivalents": format_currency(data.part_iii_6c_dividend_equivalents),
                 "Box 7 - Royalties": format_currency(data.part_iii_7_royalties),
                 "Box 8 - Net Short-term Gain": format_currency(data.part_iii_8_net_short_term_gain),
                 "Box 9a - Net Long-term Gain": format_currency(data.part_iii_9a_net_long_term_gain),
+                "Box 9b - Collectibles Gain": format_currency(data.part_iii_9b_collectibles_gain),
+                "Box 9c - Unrecaptured 1250": format_currency(data.part_iii_9c_unrecaptured_1250),
                 "Box 10 - Section 1231": format_currency(data.part_iii_10_net_section_1231),
             }
             
-            # Display in columns
+            # Display in columns (update the split since we now have 16 items instead of 11)
             col1, col2 = st.columns(2)
             items = list(income_data.items())
             
             with col1:
-                for label, value in items[:6]:
+                for label, value in items[:8]:  # First 8 items
                     st.text_input(label, value=value, disabled=True)
             
             with col2:
-                for label, value in items[6:]:
+                for label, value in items[8:]:  # Remaining 8 items
                     st.text_input(label, value=value, disabled=True)
             
             # Show total
@@ -440,11 +421,18 @@ with tab2:
                 data.part_iii_1_ordinary_income,
                 data.part_iii_2_rental_real_estate,
                 data.part_iii_3_other_rental,
+                data.part_iii_4a_guaranteed_payments_services,
+                data.part_iii_4b_guaranteed_payments_capital,
+                data.part_iii_4c_total_guaranteed_payments,
                 data.part_iii_5_interest_income,
                 data.part_iii_6a_ordinary_dividends,
+                data.part_iii_6b_qualified_dividends,
+                data.part_iii_6c_dividend_equivalents,
                 data.part_iii_7_royalties,
                 data.part_iii_8_net_short_term_gain,
                 data.part_iii_9a_net_long_term_gain,
+                data.part_iii_9b_collectibles_gain,
+                data.part_iii_9c_unrecaptured_1250,
                 data.part_iii_10_net_section_1231
             ] if isinstance(v, (int, float)))
             st.info(f"📊 **Total Income: {format_currency(total_income)}**")
@@ -456,8 +444,10 @@ with tab2:
             with col1:
                 st.text_input("Beginning Capital", value=format_currency(data.part_ii_l_beginning_capital), disabled=True)
                 st.text_input("Contributions", value=format_currency(data.part_ii_l_capital_contributed), disabled=True)
+                st.text_input("Current Year Net Income (Loss)", value=format_currency(data.part_ii_l_current_year_income), disabled=True)
             
             with col2:
+                st.text_input("Other Increase (Decrease)", value=format_currency(data.part_ii_l_other_increase), disabled=True)
                 st.text_input("Distributions", value=format_currency(data.part_ii_l_withdrawals_distributions), disabled=True)
                 st.text_input("Ending Capital", value=format_currency(data.part_ii_l_ending_capital), disabled=True)
             
@@ -465,17 +455,114 @@ with tab2:
             beginning = data.part_ii_l_beginning_capital or 0
             contributed = data.part_ii_l_capital_contributed or 0
             income = data.part_ii_l_current_year_income or 0
+            other_increase = data.part_ii_l_other_increase or 0
             distributions = data.part_ii_l_withdrawals_distributions or 0
             ending = data.part_ii_l_ending_capital or 0
-            calculated = beginning + contributed + income - distributions
             
-            if abs(calculated - ending) < 1.0:
+            # Convert string values to float if needed
+            if isinstance(other_increase, str):
+                try:
+                    other_increase = float(other_increase)
+                except:
+                    other_increase = 0
+            
+            calculated = beginning + contributed + income + other_increase - distributions
+            difference = ending - calculated
+            
+            if abs(difference) < 1.0:
                 st.success("✅ Capital account reconciles")
             else:
-                st.warning("⚠️ Capital account may not reconcile - please verify")
+                st.error("❌ Capital account does not reconcile")
+                
+                # Add a toggle to show/hide calculation details
+                show_details = st.checkbox("🔍 Show Capital Account Calculation Details", value=False)
+                
+                if show_details:
+                    st.markdown("---")
+                    
+                    st.markdown("**Capital Account Reconciliation Formula:**")
+                    st.code("""
+Beginning Capital
++ Capital Contributed  
++ Current Year Net Income (Loss)
++ Other Increase (Decrease)
+- Withdrawals & Distributions
+= Ending Capital
+                    """)
+                    
+                    st.markdown("**Your Data:**")
+                    col1, col2, col3 = st.columns([2, 1, 1])
+                    
+                    with col1:
+                        st.write("**Component**")
+                    with col2:
+                        st.write("**Amount**")
+                    with col3:
+                        st.write("**Calculation**")
+                    
+                    st.write("---")
+                    
+                    # Show each component
+                    components = [
+                        ("Beginning Capital", beginning, f"${beginning:,.2f}"),
+                        ("+ Capital Contributed", contributed, f"+ ${contributed:,.2f}"),
+                        ("+ Current Year Income", income, f"+ ${income:,.2f}"),
+                        ("+ Other Increase", other_increase, f"+ ${other_increase:,.2f}"),
+                        ("- Distributions", distributions, f"- ${distributions:,.2f}"),
+                    ]
+                    
+                    for label, value, calc in components:
+                        col1, col2, col3 = st.columns([2, 1, 1])
+                        with col1:
+                            st.write(label)
+                        with col2:
+                            st.write(f"${value:,.2f}")
+                        with col3:
+                            st.write(calc)
+                    
+                    st.write("---")
+                    col1, col2, col3 = st.columns([2, 1, 1])
+                    with col1:
+                        st.write("**Calculated Ending**")
+                    with col2:
+                        st.write(f"**${calculated:,.2f}**")
+                    with col3:
+                        st.write(f"**= ${calculated:,.2f}**")
+                    
+                    col1, col2, col3 = st.columns([2, 1, 1])
+                    with col1:
+                        st.write("**Reported Ending**")
+                    with col2:
+                        st.write(f"**${ending:,.2f}**")
+                    with col3:
+                        st.write("")
+                    
+                    col1, col2, col3 = st.columns([2, 1, 1])
+                    with col1:
+                        st.write("**Difference**")
+                    with col2:
+                        if difference > 0:
+                            st.write(f"**+${difference:,.2f}**")
+                        else:
+                            st.write(f"**${difference:,.2f}**")
+                    with col3:
+                        st.write("")
+                    
+                    st.warning(f"""
+                    **⚠️ Reconciliation Issue:** 
+                    The reported ending capital (${ending:,.2f}) differs from the calculated ending capital (${calculated:,.2f}) by ${abs(difference):,.2f}.
+                    
+                    **Possible reasons:**
+                    - Missing "Other Increase (Decrease)" items
+                    - Timing differences in income recognition
+                    - Additional contributions or distributions not captured
+                    - Data extraction errors
+                    
+                    **Recommendation:** Please verify these amounts against the original K-1 form.
+                    """)
         
         # Ownership Percentages
-        with st.expander("📊 **Ownership Percentages**", expanded=False):
+        with st.expander("📊 **Ending Ownership Percentages**", expanded=False):
             col1, col2, col3 = st.columns(3)
             
             with col1:
@@ -508,9 +595,25 @@ with tab2:
             )
         
         with col2:
-            # Export as CSV
-            df = pd.DataFrame([data.__dict__])
-            csv_data = df.to_csv(index=False)
+            # Export as CSV - vertical format
+            # Create a DataFrame with Field and Value columns
+            csv_data_dict = {
+                'Field': [],
+                'Value': []
+            }
+            
+            # Add all non-None fields to the CSV
+            for field_name, field_value in data.__dict__.items():
+                if not field_name.startswith('_') and field_value is not None:
+                    csv_data_dict['Field'].append(field_name)
+                    # Format the value appropriately
+                    if isinstance(field_value, (int, float)):
+                        csv_data_dict['Value'].append(field_value)
+                    else:
+                        csv_data_dict['Value'].append(str(field_value))
+            
+            df_vertical = pd.DataFrame(csv_data_dict)
+            csv_data = df_vertical.to_csv(index=False)
             st.download_button(
                 label="📊 Download as CSV",
                 data=csv_data,
